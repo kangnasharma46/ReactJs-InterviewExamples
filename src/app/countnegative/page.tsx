@@ -1,10 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import React from "react";
-import { countCode } from "./countevencode";
-
-const CountEven = () => {
+import React, { useState } from "react";
+import { countNegativeCode } from "./countnegativecode";
+const CountNegative = () => {
   const [inputValue, setInputValue] = useState("");
   const [count, setCount] = useState(0);
   const [showCount, setshowCount] = useState(true);
@@ -12,19 +10,20 @@ const CountEven = () => {
   const [showCode, setShowCode] = useState(false);
 
   const copyCode = async () => {
-    await navigator.clipboard.writeText(countCode);
+    await navigator.clipboard.writeText(countNegativeCode);
     alert("Code copied!");
   };
 
-  const countEvenNumber = (numberValues: string) => {
+  const countNumbers = (numberValues: string) => {
     const numberArray = numberValues
       .split(",")
       .map((item) => Number(item.trim()));
+    console.log(numberArray);
     const isValid = numberArray.every((num) => !Number.isNaN(num));
     if (isValid) {
       setshowCount(true);
       setCount(
-        numberArray.filter((num) => Number.isInteger(num) && num % 2 === 0)
+        numberArray.filter((num) => Number.isInteger(num) && Number(num < 0))
           .length,
       );
       setError(false);
@@ -38,7 +37,9 @@ const CountEven = () => {
   return (
     <div className="flex flex-col flex-1 items-center justify-center">
       <div className="flex justify-center m-4 fixed top-2">
-        <h1 className="text-4xl font-semibold">Count Even Numbers Component</h1>
+        <h1 className="text-4xl font-semibold">
+          Count Negative Numbers Component
+        </h1>
       </div>
       <div className="flex flex-col w-3/5 h-full bg-mauve-400 items-center justify-center">
         <h1>Enter number</h1>
@@ -50,9 +51,9 @@ const CountEven = () => {
           onChange={(e) => setInputValue(e.target.value)}
         ></input>
         <button
-          className="w-1/4 h-16 m-4 bg-orange-800 text-white border-2 border-white "
+          className="w-1/4 h-16 m-4 bg-orange-800 text-white border-2 border-white"
           onClick={(e) => {
-            countEvenNumber(inputValue);
+            countNumbers(inputValue);
           }}
         >
           Count Even Numbers
@@ -98,7 +99,7 @@ const CountEven = () => {
           </div>
 
           <pre className="bg-black p-4 rounded text-sm overflow-x-auto">
-            <code>{countCode}</code>
+            <code>{countNegativeCode}</code>
           </pre>
         </div>
       )}
@@ -106,4 +107,4 @@ const CountEven = () => {
   );
 };
 
-export default CountEven;
+export default CountNegative;

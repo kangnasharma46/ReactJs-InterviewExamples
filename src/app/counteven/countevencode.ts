@@ -1,8 +1,8 @@
+export const countCode = `
 "use client";
 
 import { useState } from "react";
 import React from "react";
-import { countCode } from "./countevencode";
 
 const CountEven = () => {
   const [inputValue, setInputValue] = useState("");
@@ -12,11 +12,11 @@ const CountEven = () => {
   const [showCode, setShowCode] = useState(false);
 
   const copyCode = async () => {
-    await navigator.clipboard.writeText(countCode);
+    await navigator.clipboard.writeText(componentCode);
     alert("Code copied!");
   };
 
-  const countEvenNumber = (numberValues: string) => {
+  const countEvenNumber = (numberValues) => {
     const numberArray = numberValues
       .split(",")
       .map((item) => Number(item.trim()));
@@ -51,9 +51,7 @@ const CountEven = () => {
         ></input>
         <button
           className="w-1/4 h-16 m-4 bg-orange-800 text-white border-2 border-white "
-          onClick={(e) => {
-            countEvenNumber(inputValue);
-          }}
+          onClick={() => countEvenNumber(inputValue)}
         >
           Count Even Numbers
         </button>
@@ -98,7 +96,7 @@ const CountEven = () => {
           </div>
 
           <pre className="bg-black p-4 rounded text-sm overflow-x-auto">
-            <code>{countCode}</code>
+            <code>{componentCode}</code>
           </pre>
         </div>
       )}
@@ -107,3 +105,4 @@ const CountEven = () => {
 };
 
 export default CountEven;
+`;

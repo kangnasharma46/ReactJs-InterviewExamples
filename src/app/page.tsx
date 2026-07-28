@@ -20,6 +20,12 @@ export default function Home() {
         >
           2.) Count Even Numbers
         </Link>
+        <Link
+          href="/countnegative"
+          className="rounded text-blue-800 hover:bg-blue-100 text-2xl"
+        >
+          3.) Count Negative Numbers
+        </Link>
       </div>
     </div>
   );

@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { componentCode } from "./clockcode";
-export default function Clock() {
+
+import React from "react";
+
+const Clock = () => {
   const [time, setTime] = useState("");
   const [greeting, setGreeting] = useState("");
   const [showCode, setShowCode] = useState(false);
@@ -96,4 +99,6 @@ export default function Clock() {
       )}
     </div>
   );
-}
+};
+
+export default Clock;
